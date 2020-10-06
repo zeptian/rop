@@ -15,8 +15,8 @@ class CreateRopsTable extends Migration
     {
         Schema::create('rops', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id');
+            $table->foreignId('category_id');
             $table->string('action');
             $table->string('planTanggal');
             $table->decimal('planBudget', 12, 2);
