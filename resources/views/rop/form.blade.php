@@ -27,7 +27,7 @@
                         <label for="Kategori" class="col-md-4 col-form-label text-md-right">Kategori</label>
                         <div class="col-md-6">
                             <select name="category" id="Kategori" class="form-control @error('category') is-invalid @enderror" >
-                                @if ($rop->category)
+                                @if (isset($rop->category))
                                 <option value="{{$rop->category->id}}">{{$rop->category->category}}</option>
                                 @else
                                 <option value=""></option>                                    
@@ -48,7 +48,7 @@
                         <label for="Kategori" class="col-md-4 col-form-label text-md-right">Sub-Kategori</label>
                         <div class="col-md-6">
                             <select name="subcategory" id="SubKategori" class="form-control @error('subcategory') is-invalid @enderror" >
-                                @if ($rop->subcategory)
+                                @if (isset($rop->subcategory))
                                 <option value="{{$rop->subcategory->id}}">{{$rop->subcategory->category}}</option>
                                 @endif
                                
