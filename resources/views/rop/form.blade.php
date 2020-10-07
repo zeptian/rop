@@ -184,7 +184,7 @@
                     <div class="form-group row">
                         <label for="Lampiran" class="col-md-4 col-form-label text-md-right">Lampiran</label>
                         <div class="col-md-6">
-                            <input type="file" name="file">
+                            <input type="file" name="file" class="form-control @error('file') is-invalid @enderror">
                             @error('file')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

@@ -62,14 +62,15 @@ class RopController extends Controller
             'realBudget'    => 'required|numeric|min:1000',
             'realSource'    => 'required',
             'realTarget'    => 'required',
-            'description'    => 'required',
-            'file'          => 'required',
+            // 'description'    => 'required',
+            // 'file'          => 'required',
         ]);
 
         $file = $request->file('file');
-        $tujuan_upload = 'file';
-        $file->move($tujuan_upload, $file->getClientOriginalName());
-
+        if ($file) {
+            $tujuan_upload = 'file';
+            $file->move($tujuan_upload, $file->getClientOriginalName());
+        }
         $rop = new Rop();
         $rop->user_id = Auth::id();
         $rop->category_id = $request->category;
@@ -84,7 +85,11 @@ class RopController extends Controller
         $rop->realSource = $request->realSource;
         $rop->realTarget = $request->realTarget;
         $rop->description = $request->description;
-        $rop->report = URL::to('/file') . '/' . $file->getClientOriginalName();
+        if ($file) {
+            $rop->report = URL::to('/file') . '/' . $file->getClientOriginalName();
+        } else {
+            $rop->report = null;
+        }
         $rop->save();
 
         return redirect()->route('rop')->with('alert-success', 'Berhasil Menambahkan Data!');
