@@ -13,20 +13,30 @@
                             {{ session('status') }}
                         </div>
                     @endif
+<<<<<<< HEAD
                     <h4>Laporan {{$user->name}}</h4>
                     <div style="overflow: scroll">
+=======
+
+>>>>>>> 1379c5a7fc1fd7655e484dbf1545d2d5b610a462
                     <table class="table">
                         <thead>
                             <tr>
                                 <th rowspan="2">No</th>
+<<<<<<< HEAD
                                 <th rowspan="2">Kategori</th>
                                 <th rowspan="2">Sub Kategori</th>
+=======
+>>>>>>> 1379c5a7fc1fd7655e484dbf1545d2d5b610a462
                                 <th rowspan="2">Kegiatan</th>
                                 <th colspan="4">Rencana</th>
                                 <th colspan="4">Realisasi</th>
                                 <th rowspan="2">Keterangan</th>
+<<<<<<< HEAD
                                 <th rowspan="2">Lampiran</th>
                                 <th rowspan="2">Aksi</th>
+=======
+>>>>>>> 1379c5a7fc1fd7655e484dbf1545d2d5b610a462
                             </tr>
                             <tr>
                                 <th>Waktu Pelaksanaan</th>

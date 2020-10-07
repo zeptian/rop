@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "58c84edb44f8b54acf15a49be54f116e",
+=======
+    "content-hash": "f90a9c0cc3d7cd7b1d24d0ee2befd49e",
+>>>>>>> 1379c5a7fc1fd7655e484dbf1545d2d5b610a462
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -700,6 +704,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v7.28.4",
             "source": {
                 "type": "git",
@@ -710,6 +715,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/de187e9200948bab6975167e480950abcd5efdac",
                 "reference": "de187e9200948bab6975167e480950abcd5efdac",
+=======
+            "version": "v7.28.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "b0942c391975972b1a54b2dc983e33a239f169a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b0942c391975972b1a54b2dc983e33a239f169a9",
+                "reference": "b0942c391975972b1a54b2dc983e33a239f169a9",
+>>>>>>> 1379c5a7fc1fd7655e484dbf1545d2d5b610a462
                 "shasum": ""
             },
             "require": {
@@ -854,7 +871,11 @@
                 "framework",
                 "laravel"
             ],
+<<<<<<< HEAD
             "time": "2020-10-06T14:22:09+00:00"
+=======
+            "time": "2020-09-17T14:23:26+00:00"
+>>>>>>> 1379c5a7fc1fd7655e484dbf1545d2d5b610a462
         },
         {
             "name": "laravel/tinker",
@@ -922,6 +943,7 @@
         },
         {
             "name": "laravel/ui",
+<<<<<<< HEAD
             "version": "v2.4.1",
             "source": {
                 "type": "git",
@@ -932,6 +954,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/ui/zipball/1c69ae3e8b52fe6c9eaf83b43c6dd8ef5c3f9e2c",
                 "reference": "1c69ae3e8b52fe6c9eaf83b43c6dd8ef5c3f9e2c",
+=======
+            "version": "v2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/ui.git",
+                "reference": "f5398544a9cd4804a42d09ce51735e37cd51ea2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/f5398544a9cd4804a42d09ce51735e37cd51ea2d",
+                "reference": "f5398544a9cd4804a42d09ce51735e37cd51ea2d",
+>>>>>>> 1379c5a7fc1fd7655e484dbf1545d2d5b610a462
                 "shasum": ""
             },
             "require": {
@@ -973,7 +1007,11 @@
                 "laravel",
                 "ui"
             ],
+<<<<<<< HEAD
             "time": "2020-09-22T16:51:51+00:00"
+=======
+            "time": "2020-09-11T15:31:52+00:00"
+>>>>>>> 1379c5a7fc1fd7655e484dbf1545d2d5b610a462
         },
         {
             "name": "league/commonmark",
