@@ -34,10 +34,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('plan.create')}}">Tambah Kegiatan</a>
+                            <a class="nav-link" href="{{route('plan.create')}}">Tambah Rencana</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('plan')}}">Rekap Kegiatan</a>
+                            <a class="nav-link" href="{{route('plan')}}">Rekap Rencana</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('real')}}">Rekap Realisasi</a>
                         </li>
                     </ul>
 

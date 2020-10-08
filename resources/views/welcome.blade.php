@@ -85,8 +85,9 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{route('plan.create')}}">Tambah Kegiatan</a>
-                    <a href="{{route('plan')}}">Rekap Kegiatan</a>
+                    <a class="nav-link" href="{{route('plan.create')}}">Tambah Rencana</a>
+                    <a class="nav-link" href="{{route('plan')}}">Rekap Rencana</a>
+                    <a class="nav-link" href="{{route('real')}}">Rekap Realisasi</a>
                     @auth
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}

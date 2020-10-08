@@ -22,19 +22,19 @@
                                 <th rowspan="2">Kategori</th>
                                 <th rowspan="2">Sub Kategori</th>
                                 <th rowspan="2">Kegiatan</th>
-                                <th colspan="4">Rencana</th>
-                                <th colspan="4">Realisasi</th>
-                                <th rowspan="2">Keterangan</th>
+                                <th colspan="4" class="left">Rencana</th>
+                                <th colspan="4" class="left">Realisasi</th>
+                                <th rowspan="2" class="left">Keterangan</th>
                                 <th rowspan="2">Lampiran</th>
                                 <th rowspan="2">Aksi</th>
                             </tr>
                             <tr>
-                                <th>Waktu Pelaksanaan</th>
+                                <th class="left">Waktu Pelaksanaan</th>
                                 <th>Biaya</th>
                                 <th>Sumber dana</th>
                                 <th>Sasaran</th>
 
-                                <th>Waktu Pelaksanaan</th>
+                                <th class="left">Waktu Pelaksanaan</th>
                                 <th>Biaya</th>
                                 <th>Sumber dana</th>
                                 <th>Sasaran</th>
@@ -50,16 +50,16 @@
                                     <td rowspan="{{$jmlReal}}">{{ $plan->category->category }}</td>
                                     <td rowspan="{{$jmlReal}}">{{ $plan->subcategory->category }}</td>
                                     <td rowspan="{{$jmlReal}}">{{ $plan->action }}</td>
-                                    <td rowspan="{{$jmlReal}}">{{ $plan->planTanggal }}</td>
+                                    <td rowspan="{{$jmlReal}}"  class="left">{{ $plan->planTanggal }}</td>
                                     <td rowspan="{{$jmlReal}}">{{ $plan->planBudget }}</td>
                                     <td rowspan="{{$jmlReal}}">{{ $plan->planSource }}</td>
                                     <td rowspan="{{$jmlReal}}">{{ $plan->planTarget }}</td>
                                 @foreach ($plan->real as $real)
-                                    <td>{{ $real->realTanggal }}</td>
+                                    <td  class="left">{{ $real->realTanggal }}</td>
                                     <td>{{ $real->realBudget }}</td>
                                     <td>{{ $real->realSource }}</td>
                                     <td>{{ $real->realTarget }}</td>
-                                    <td>{{ $real->description }}</td>
+                                    <td class="left">{{ $real->description }}</td>
                                     <td>@if ($real->report)
                                         <a href="{{ $real->report }}" target="_blank" class="btn btn-sm btn-success" >Download</a>
                                         @endif
