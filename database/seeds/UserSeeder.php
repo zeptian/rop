@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
     {
         //
         $users = [
+            ["name" => "admin", "email" => "admin@mail.com", "role" => "admin", "password" => Hash::make("admindkk")],
             ["name" => "p2ml", "email" => "p2ml@mail.com", "password" => Hash::make("p2ml")],
             ["name" => "p2tms", "email" => "p2tms@mail.com", "password" => Hash::make('p2tms')],
             ["name" => "p2tvz", "email" => "p2tvz@mail.com", "password" => Hash::make('p2tvz')],

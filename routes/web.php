@@ -41,9 +41,10 @@ Route::put('/plan/edit/{id}',  'PlanController@update')->name('plan.update');
 Route::delete('/plan/delete/{id}',  'PlanController@destroy')->name('plan.destroy');
 
 //real
+Route::get('/real', 'RealController@index')->name('real');
 Route::get('/real/form', 'RealController@create')->name('real.create');
 Route::post('/real/form', 'RealController@store')->name('real.store');
-Route::get('/real/{id}',  'RealController@show')->name('real.show');
+// Route::get('/real/{id}',  'RealController@show')->name('real.show');
 Route::get('/real/edit/{id}',  'RealController@edit')->name('real.edit');
 Route::put('/real/edit/{id}',  'RealController@update')->name('real.update');
 Route::delete('/real/delete/{id}',  'RealController@destroy')->name('real.destroy');

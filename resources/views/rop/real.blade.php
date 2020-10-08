@@ -22,9 +22,27 @@
                     <form method="post" enctype="multipart/form-data" action="{{ route('real.create')}}">
                         @csrf
                     @endif
-                    <h4>Laporan {{$user->name}}</h4>
+                    <h4>Laporan Realisasi {{$user->name}}</h4>
                     
-
+                    <table class="table">
+                        <tr>
+                            <td>Kategori</td><td>:</td><td>{{$plan->category->category}}</td>
+                            <td>SubKategori</td><td>:</td><td>{{$plan->subcategory->category}}</td>
+                        </tr>
+                        <tr>
+                            <td>Kegiatan</td><td>:</td><td>{{$plan->action}}</td>
+                            <td>Waktu Pelaksanaan</td><td>:</td><td>{{$plan->planTanggal}}</td>
+                        </tr>
+                        <tr>
+                            <td>Anggaran</td><td>:</td><td>{{$plan->planBudget}}</td>
+                            <td>Sumber Dana</td><td>:</td><td>{{$plan->planSource}}</td>
+                        </tr>
+                        <tr>
+                            <td>Sasaran</td><td>:</td><td>{{$plan->planTarget}}</td>
+                            <td colspan="3"></td>
+                        </tr>
+                    </table>
+                    <input type="hidden" name="plan_id" value="{{ $plan->id }}">
                     <div class="form-group row">
                         <label for="realTanggal" class="col-md-4 col-form-label text-md-right">Realisasi Waktu Pelaksanaan</label>
                         <div class="col-md-6">

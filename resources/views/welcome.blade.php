@@ -85,8 +85,8 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{route('rop.create')}}">Tambah Kegiatan</a>
-                    <a href="{{route('rop')}}">Rekap Kegiatan</a>
+                    <a href="{{route('plan.create')}}">Tambah Kegiatan</a>
+                    <a href="{{route('plan')}}">Rekap Kegiatan</a>
                     @auth
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}

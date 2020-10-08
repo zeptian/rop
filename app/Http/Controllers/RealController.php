@@ -23,10 +23,10 @@ class RealController extends Controller
     public function index()
     {
         //
-        // $uid = Auth::id();
-        // $real = Real::where('user_id', $uid)->get();
-        // $user = Auth::user();
-        // return view('real.rekap', ['reals' => $real, 'user' => $user]);
+        $uid = Auth::id();
+        $plan = Plan::where('user_id', $uid)->get();
+        $user = Auth::user();
+        return view('rop.rekap', ['plans' => $plan, 'user' => $user]);
     }
 
     /**
@@ -39,7 +39,7 @@ class RealController extends Controller
         //
         $user = Auth::user();
         $planId = $request->input('plan');
-        $plan = Plan::where('id', $planId)->get();
+        $plan = Plan::where('id', $planId)->get()->first();
         return view('rop.real', ['plan' => $plan, 'user' => $user]);
     }
 

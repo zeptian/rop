@@ -34,10 +34,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('rop.create')}}">Tambah Kegiatan</a>
+                            <a class="nav-link" href="{{route('plan.create')}}">Tambah Kegiatan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('rop')}}">Rekap Kegiatan</a>
+                            <a class="nav-link" href="{{route('plan')}}">Rekap Kegiatan</a>
                         </li>
                     </ul>
 

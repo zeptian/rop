@@ -41,34 +41,40 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($rops as $rop)
+                            @foreach ($plans as $plan)
+                            @php
+                                $jmlReal = count($plan->real);
+                            @endphp
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $rop->category->category }}</td>
-                                    <td>{{ $rop->subcategory->category }}</td>
-                                    <td>{{ $rop->action }}</td>
-                                    <td>{{ $rop->planTanggal }}</td>
-                                    <td>{{ $rop->planBudget }}</td>
-                                    <td>{{ $rop->planSource }}</td>
-                                    <td>{{ $rop->planTarget }}</td>
-                                    <td>{{ $rop->realTanggal }}</td>
-                                    <td>{{ $rop->realBudget }}</td>
-                                    <td>{{ $rop->realSource }}</td>
-                                    <td>{{ $rop->realTarget }}</td>
-                                    <td>{{ $rop->description }}</td>
-                                    <td>@if ($rop->report)
-                                            <a href="{{ $rop->report }}" target="_blank" class="btn btn-sm btn-success" >Download</a>
+                                    <td rowspan="{{$jmlReal}}">{{ $loop->iteration }}</td>
+                                    <td rowspan="{{$jmlReal}}">{{ $plan->category->category }}</td>
+                                    <td rowspan="{{$jmlReal}}">{{ $plan->subcategory->category }}</td>
+                                    <td rowspan="{{$jmlReal}}">{{ $plan->action }}</td>
+                                    <td rowspan="{{$jmlReal}}">{{ $plan->planTanggal }}</td>
+                                    <td rowspan="{{$jmlReal}}">{{ $plan->planBudget }}</td>
+                                    <td rowspan="{{$jmlReal}}">{{ $plan->planSource }}</td>
+                                    <td rowspan="{{$jmlReal}}">{{ $plan->planTarget }}</td>
+                                @foreach ($plan->real as $real)
+                                    <td>{{ $real->realTanggal }}</td>
+                                    <td>{{ $real->realBudget }}</td>
+                                    <td>{{ $real->realSource }}</td>
+                                    <td>{{ $real->realTarget }}</td>
+                                    <td>{{ $real->description }}</td>
+                                    <td>@if ($real->report)
+                                        <a href="{{ $real->report }}" target="_blank" class="btn btn-sm btn-success" >Download</a>
                                         @endif
                                     </td>
                                     <td>
-                                        <form action="{{ route('rop.destroy', ['id'=>$rop->id]) }}" method="post">
+                                        <form action="{{ route('real.destroy', ['id'=>$real->id]) }}" method="post">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-                                            <a href="{{ route('rop.edit',['id'=>$rop->id]) }}" class=" btn btn-sm btn-primary">Edit</a>
+                                            <a href="{{ route('real.edit',['id'=>$real->id]) }}" class=" btn btn-sm btn-primary">Edit</a>
                                             <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">Delete</button>
                                         </form>
                                     </td>
-                                </tr>
+                                    </tr>
+                                @endforeach
+                            </tr>
                             @endforeach
                         <tbody>
                     </table>

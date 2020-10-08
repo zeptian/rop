@@ -25,7 +25,7 @@ class PlanController extends Controller
         $uid = Auth::id();
         $plan = Plan::where('user_id', $uid)->get();
         $user = Auth::user();
-        return view('rop.rekap', ['plans' => $plan, 'user' => $user]);
+        return view('rop.rekapPlan', ['plans' => $plan, 'user' => $user]);
     }
 
     /**
