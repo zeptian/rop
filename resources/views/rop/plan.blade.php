@@ -14,12 +14,12 @@
                         </div>
                     @endif
 
-                    @if(isset($rop->id))
-                    <form method="post" enctype="multipart/form-data" action="{{ route('rop.update', ['id'=>$rop->id]) }}">
+                    @if(isset($plan->id))
+                    <form method="post" enctype="multipart/form-data" action="{{ route('plan.update', ['id'=>$plan->id]) }}">
                         @csrf
                         {{ method_field('PUT') }}
                     @else
-                    <form method="post" enctype="multipart/form-data" action="{{ route('rop.create')}}">
+                    <form method="post" enctype="multipart/form-data" action="{{ route('plan.create')}}">
                         @csrf
                     @endif
                     <h4>Laporan {{$user->name}}</h4>
@@ -27,8 +27,8 @@
                         <label for="Kategori" class="col-md-4 col-form-label text-md-right">Kategori</label>
                         <div class="col-md-6">
                             <select name="category" id="Kategori" class="form-control @error('category') is-invalid @enderror" >
-                                @if (isset($rop->category))
-                                <option value="{{$rop->category->id}}">{{$rop->category->category}}</option>
+                                @if (isset($plan->category))
+                                <option value="{{$plan->category->id}}">{{$plan->category->category}}</option>
                                 @else
                                 <option value=""></option>                                    
                                 @endif
@@ -48,8 +48,8 @@
                         <label for="Kategori" class="col-md-4 col-form-label text-md-right">Sub-Kategori</label>
                         <div class="col-md-6">
                             <select name="subcategory" id="SubKategori" class="form-control @error('subcategory') is-invalid @enderror" >
-                                @if (isset($rop->subcategory))
-                                <option value="{{$rop->subcategory->id}}">{{$rop->subcategory->category}}</option>
+                                @if (isset($plan->subcategory))
+                                <option value="{{$plan->subcategory->id}}">{{$plan->subcategory->category}}</option>
                                 @endif
                                
                             </select>
@@ -64,7 +64,7 @@
                     <div class="form-group row">
                         <label for="Kegiatan" class="col-md-4 col-form-label text-md-right">Kegiatan</label>
                         <div class="col-md-6">
-                            <input id="action" type="text" class="form-control @error('action') is-invalid @enderror" name="action" value="{{ $rop->action ?? old('action') }}" required>
+                            <input id="action" type="text" class="form-control @error('action') is-invalid @enderror" name="action" value="{{ $plan->action ?? old('action') }}" required>
                             @error('action')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -76,7 +76,7 @@
                     <div class="form-group row">
                         <label for="planTanggal" class="col-md-4 col-form-label text-md-right">Rencana Waktu Pelaksanaan</label>
                         <div class="col-md-6">
-                            <input id="planTanggal" type="text" class="form-control @error('planTanggal') is-invalid @enderror" name="planTanggal" value="{{ $rop->planTanggal ?? old('planTanggal') }}" required>
+                            <input id="planTanggal" type="text" class="form-control @error('planTanggal') is-invalid @enderror" name="planTanggal" value="{{ $plan->planTanggal ?? old('planTanggal') }}" required>
                             @error('planTanggal')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -88,7 +88,7 @@
                     <div class="form-group row">
                         <label for="planBudget" class="col-md-4 col-form-label text-md-right">Rencana Anggaran</label>
                         <div class="col-md-6">
-                            <input id="planBudget" type="number" min="1000" class="form-control @error('planBudget') is-invalid @enderror" name="planBudget" value="{{ $rop->planBudget ?? old('planBudget') }}" required >
+                            <input id="planBudget" type="number" min="1000" class="form-control @error('planBudget') is-invalid @enderror" name="planBudget" value="{{ $plan->planBudget ?? old('planBudget') }}" required >
                             @error('planBudget')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -100,7 +100,7 @@
                     <div class="form-group row">
                         <label for="planSource" class="col-md-4 col-form-label text-md-right">Rencana Sumber Dana</label>
                         <div class="col-md-6">
-                            <input id="planSource" type="text" class="form-control @error('planSource') is-invalid @enderror" name="planSource" value="{{ $rop->planSource ?? old('planSource') }}" required >
+                            <input id="planSource" type="text" class="form-control @error('planSource') is-invalid @enderror" name="planSource" value="{{ $plan->planSource ?? old('planSource') }}" required >
                             @error('planSource')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -112,80 +112,8 @@
                     <div class="form-group row">
                         <label for="planTarget" class="col-md-4 col-form-label text-md-right">Rencana Sasaran</label>
                         <div class="col-md-6">
-                            <input id="planTarget" type="text" class="form-control @error('planTarget') is-invalid @enderror" name="planTarget" value="{{ $rop->planTarget ?? old('planTarget') }}" required >
+                            <input id="planTarget" type="text" class="form-control @error('planTarget') is-invalid @enderror" name="planTarget" value="{{ $plan->planTarget ?? old('planTarget') }}" required >
                             @error('planTarget')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="realTanggal" class="col-md-4 col-form-label text-md-right">Realisasi Waktu Pelaksanaan</label>
-                        <div class="col-md-6">
-                            <input id="realTanggal" type="text" class="form-control @error('realTanggal') is-invalid @enderror" name="realTanggal" value="{{ $rop->realTanggal ?? old('realTanggal') }}" required>
-                            @error('realTanggal')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="realBudget" class="col-md-4 col-form-label text-md-right">Realisasi Anggaran</label>
-                        <div class="col-md-6">
-                            <input id="realBudget" type="number" min="1000" class="form-control @error('realBudget') is-invalid @enderror" name="realBudget" value="{{ $rop->realBudget ?? old('realBudget') }}" required >
-                            @error('realBudget')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="realSource" class="col-md-4 col-form-label text-md-right">Realisasi Sumber Dana</label>
-                        <div class="col-md-6">
-                            <input id="realSource" type="text" class="form-control @error('realSource') is-invalid @enderror" name="realSource" value="{{ $rop->realSource ?? old('realSource') }}" required >
-                            @error('realSource')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="realTarget" class="col-md-4 col-form-label text-md-right">Realisasi Sasaran</label>
-                        <div class="col-md-6">
-                            <input id="realTarget" type="text" class="form-control @error('realTarget') is-invalid @enderror" name="realTarget" value="{{ $rop->realTarget ?? old('realTarget') }}" required >
-                            @error('realTarget')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="Keterangan" class="col-md-4 col-form-label text-md-right">Keterangan</label>
-                        <div class="col-md-6">
-                            <textarea id="description"  class="form-control @error('description') is-invalid @enderror" name="description">{{ $rop->description ?? old('description') }}</textarea>
-                            @error('description')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="Lampiran" class="col-md-4 col-form-label text-md-right">Lampiran</label>
-                        <div class="col-md-6">
-                            <input type="file" name="file" class="form-control @error('file') is-invalid @enderror">
-                            @error('file')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

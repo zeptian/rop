@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Rop extends Model
+class Plan extends Model
 {
+    //
+    use SoftDeletes;
 
     public function category()
     {
@@ -14,5 +17,9 @@ class Rop extends Model
     public function subcategory()
     {
         return $this->belongsTo(Category::class);
+    }
+    public function real()
+    {
+        return $this->hasMany(Real::class);
     }
 }
