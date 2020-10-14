@@ -55,6 +55,9 @@
                                     <td rowspan="{{$jmlReal}}">{{ $plan->planSource }}</td>
                                     <td rowspan="{{$jmlReal}}">{{ $plan->planTarget }}</td>
                                 @foreach ($plan->real as $real)
+                                    @if ($loop->iteration > 1)
+                                        <tr>
+                                    @endif
                                     <td  class="left">{{ $real->realTanggal }}</td>
                                     <td>{{ $real->realBudget }}</td>
                                     <td>{{ $real->realSource }}</td>
