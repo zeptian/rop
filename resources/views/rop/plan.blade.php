@@ -88,7 +88,7 @@
                     <div class="form-group row">
                         <label for="planBudget" class="col-md-4 col-form-label text-md-right">Rencana Anggaran</label>
                         <div class="col-md-6">
-                            <input id="planBudget" type="number" min="1000" class="form-control @error('planBudget') is-invalid @enderror" name="planBudget" value="{{ $plan->planBudget ?? old('planBudget') }}" required >
+                            <input id="planBudget" type="text" class="form-control inputmask @error('planBudget') is-invalid @enderror" name="planBudget" value="{{ $plan->planBudget ?? old('planBudget') }}" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'digits': 2, 'digitsOptional': false" required >
                             @error('planBudget')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -100,7 +100,15 @@
                     <div class="form-group row">
                         <label for="planSource" class="col-md-4 col-form-label text-md-right">Rencana Sumber Dana</label>
                         <div class="col-md-6">
-                            <input id="planSource" type="text" class="form-control @error('planSource') is-invalid @enderror" name="planSource" value="{{ $plan->planSource ?? old('planSource') }}" required >
+                            <select name="planSource" id="planSource" class="form-control @error('planSource') is-invalid @enderror">
+                                <option>{{ $plan->planSource ?? old('planSource') }}</option>
+                                <option>APBN</option>
+                                <option>APBD I</option>
+                                <option>APBD II</option>
+                                <option>DID</option>
+                                <option>DBHCHT</option>
+                                <option>BTT</option>
+                            </select>
                             @error('planSource')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -130,7 +138,10 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+@endsection
+
+@section('js')
+<script src="{{asset('plugins/inputmask/jquery.inputmask.min.js')}}"></script>
 <script>
 $('form').on('focus', 'input[type=number]', function (e) {
   $(this).on('wheel.disableScroll', function (e) {
@@ -140,6 +151,9 @@ $('form').on('focus', 'input[type=number]', function (e) {
 $('form').on('blur', 'input[type=number]', function (e) {
   $(this).off('wheel.disableScroll')
 })
+
+$(".inputmask").inputmask();
+
 $("#Kategori").change(function(){
     category = $(this).val();
     console.log(category);

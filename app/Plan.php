@@ -18,6 +18,10 @@ class Plan extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
     public function real()
     {
         return $this->hasMany(Real::class);

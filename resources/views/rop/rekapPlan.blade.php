@@ -19,11 +19,7 @@
                         <thead>
                             <tr>
                                 <th rowspan="2">No</th>
-<<<<<<< HEAD
                                 <th rowspan="2">Penginput</th>
-=======
-                                <th rowspan="2">User</th>
->>>>>>> 03be63d056f1495e8c08c66ca01664eb11062527
                                 <th rowspan="2">Kategori</th>
                                 <th rowspan="2">Sub Kategori</th>
                                 <th rowspan="2">Kegiatan</th>
@@ -46,7 +42,7 @@
                                     <td>{{ $plan->subcategory->category }}</td>
                                     <td>{{ $plan->action }}</td>
                                     <td>{{ $plan->planTanggal }}</td>
-                                    <td>{{ $plan->planBudget }}</td>
+                                    <td>{{ number_format($plan->planBudget,2) }}</td>
                                     <td>{{ $plan->planSource }}</td>
                                     <td>{{ $plan->planTarget }}</td>
                                     <td>
@@ -72,4 +68,13 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready( function () {
+    $('#data').DataTable();
+} );
+</script>
 @endsection
