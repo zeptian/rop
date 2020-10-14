@@ -22,9 +22,14 @@ class PlanController extends Controller
     public function index()
     {
         //
-        $uid = Auth::id();
-        $plan = Plan::where('user_id', $uid)->get();
         $user = Auth::user();
+        $role = $user->role;
+        $uid = $user->id;
+        if ($role == 'admin') {
+            $plan = Plan::all();
+        } else {
+            $plan = Plan::where('user_id', $uid)->get();
+        }
         return view('rop.rekapPlan', ['plans' => $plan, 'user' => $user]);
     }
 
