@@ -19,6 +19,7 @@
                         <thead>
                             <tr>
                                 <th rowspan="2">No</th>
+                                <th rowspan="2">User</th>
                                 <th rowspan="2">Kategori</th>
                                 <th rowspan="2">Sub Kategori</th>
                                 <th rowspan="2">Kegiatan</th>
@@ -36,6 +37,7 @@
                             @foreach ($plans as $plan)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $plan->user->name }}</td>
                                     <td>{{ $plan->category->category }}</td>
                                     <td>{{ $plan->subcategory->category }}</td>
                                     <td>{{ $plan->action }}</td>

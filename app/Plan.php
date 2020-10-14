@@ -10,6 +10,10 @@ class Plan extends Model
     //
     use SoftDeletes;
 
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function category()
     {
         return $this->belongsTo(Category::class);

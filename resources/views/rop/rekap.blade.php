@@ -19,6 +19,7 @@
                         <thead>
                             <tr>
                                 <th rowspan="2">No</th>
+                                <th rowspan="2">Penginput</th>
                                 <th rowspan="2">Kategori</th>
                                 <th rowspan="2">Sub Kategori</th>
                                 <th rowspan="2">Kegiatan</th>
@@ -50,6 +51,7 @@
                             @endphp
                                 <tr>
                                     <td rowspan="{{$jmlReal}}">{{ $loop->iteration }}</td>
+                                    <td rowspan="{{$jmlReal}}">{{ $plan->user->name }}</td>
                                     <td rowspan="{{$jmlReal}}">{{ $plan->category->category }}</td>
                                     <td rowspan="{{$jmlReal}}">{{ $plan->subcategory->category }}</td>
                                     <td rowspan="{{$jmlReal}}">{{ $plan->action }}</td>
