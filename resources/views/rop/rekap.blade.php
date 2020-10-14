@@ -44,6 +44,9 @@
                             @foreach ($plans as $plan)
                             @php
                                 $jmlReal = count($plan->real);
+                                if ($jmlReal==0) {
+                                    $jmlReal=1;
+                                }
                             @endphp
                                 <tr>
                                     <td rowspan="{{$jmlReal}}">{{ $loop->iteration }}</td>
@@ -54,30 +57,36 @@
                                     <td rowspan="{{$jmlReal}}">{{ $plan->planBudget }}</td>
                                     <td rowspan="{{$jmlReal}}">{{ $plan->planSource }}</td>
                                     <td rowspan="{{$jmlReal}}">{{ $plan->planTarget }}</td>
-                                @foreach ($plan->real as $real)
-                                    @if ($loop->iteration > 1)
-                                        <tr>
-                                    @endif
-                                    <td  class="left">{{ $real->realTanggal }}</td>
-                                    <td>{{ $real->realBudget }}</td>
-                                    <td>{{ $real->realSource }}</td>
-                                    <td>{{ $real->realTarget }}</td>
-                                    <td class="left">{{ $real->description }}</td>
-                                    <td>@if ($real->report)
-                                        <a href="{{ $real->report }}" target="_blank" class="btn btn-sm btn-success" >Download</a>
+
+                                @isset($plan->real)
+                                        
+                                    @foreach ($plan->real as $real)
+                                        @if ($loop->iteration > 1)
+                                            <tr>
                                         @endif
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('real.destroy', ['id'=>$real->id]) }}" method="post">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <a href="{{ route('real.edit',['id'=>$real->id]) }}" class=" btn btn-sm btn-primary">Edit</a>
-                                            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">Delete</button>
-                                        </form>
-                                    </td>
-                                    </tr>
-                                @endforeach
-                            </tr>
+                                                <td  class="left">{{ $real->realTanggal }}</td>
+                                                <td>{{ $real->realBudget }}</td>
+                                                <td>{{ $real->realSource }}</td>
+                                                <td>{{ $real->realTarget }}</td>
+                                                <td class="left">{{ $real->description }}</td>
+                                                <td>@if ($real->report)
+                                                    <a href="{{ $real->report }}" target="_blank" class="btn btn-sm btn-success" >Download</a>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <form action="{{ route('real.destroy', ['id'=>$real->id]) }}" method="post">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <a href="{{ route('real.edit',['id'=>$real->id]) }}" class=" btn btn-sm btn-primary">Edit</a>
+                                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">Delete</button>
+                                                    </form>
+                                                </td>
+                                                @if ($loop->iteration > 1)
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                @endif
+                                </tr>
                             @endforeach
                         <tbody>
                     </table>
