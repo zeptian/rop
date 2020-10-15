@@ -58,7 +58,7 @@
                     <div class="form-group row">
                         <label for="realBudget" class="col-md-4 col-form-label text-md-right">Realisasi Anggaran</label>
                         <div class="col-md-6">
-                            <input id="realBudget" type="number" min="1000" class="form-control @error('realBudget') is-invalid @enderror" name="realBudget" value="{{ $real->realBudget ?? old('realBudget') }}" required >
+                            <input id="realBudget" type="text" class="form-control inputmask @error('planBudget') is-invalid @enderror"  name="realBudget" value="{{ $real->realBudget ?? old('realBudget') }}" required >
                             @error('realBudget')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -70,7 +70,15 @@
                     <div class="form-group row">
                         <label for="realSource" class="col-md-4 col-form-label text-md-right">Realisasi Sumber Dana</label>
                         <div class="col-md-6">
-                            <input id="realSource" type="text" class="form-control @error('realSource') is-invalid @enderror" name="realSource" value="{{ $real->realSource ?? old('realSource') }}" required >
+                            <select name="realSource" id="realSource" class="form-control @error('realSource') is-invalid @enderror">
+                                <option>{{ $plan->realSource ?? old('realSource') }}</option>
+                                <option>APBN</option>
+                                <option>APBD I</option>
+                                <option>APBD II</option>
+                                <option>DID</option>
+                                <option>DBHCHT</option>
+                                <option>BTT</option>
+                            </select>
                             @error('realSource')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -90,7 +98,54 @@
                             @enderror
                         </div>
                     </div>
-
+                    <div id="kontrak" style="display: none">
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <h3 class="text-md-right">Kontrak</h3>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="noKontrak" class="col-md-4 col-form-label text-md-right">Nomor Kontrak</label>
+                        <div class="col-md-6">
+                            <input id="noKontrak" type="text" class="form-control @error('noKontrak') is-invalid @enderror" name="noKontrak" value="{{ $real->noKontrak ?? old('noKontrak') }}" >
+                            @error('noKontrak')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tglKontrak" class="col-md-4 col-form-label text-md-right">Tanggal Kontrak</label>
+                        <div class="col-md-6">
+                            <input id="tglKontrak" type="text" class="form-control @error('tglKontrak') is-invalid @enderror" name="tglKontrak" value="{{ $real->tglKontrak ?? old('tglKontrak') }}" >
+                            @error('tglKontrak')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="startKontrak" class="col-md-4 col-form-label text-md-right">Jangka Waktu Kontrak</label>
+                        <div class="col-md-3">
+                            <input id="startKontrak" type="text" class="form-control @error('startKontrak') is-invalid @enderror" name="startKontrak" value="{{ $real->startKontrak ?? old('startKontrak') }}" >
+                            @error('startKontrak')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div> Sampai
+                        <div class="col-md-3">
+                            <input id="startKontrak" type="text" class="form-control @error('startKontrak') is-invalid @enderror" name="startKontrak" value="{{ $real->startKontrak ?? old('startKontrak') }}" >
+                            @error('startKontrak')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>                    
+                    </div>
                     <div class="form-group row">
                         <label for="Keterangan" class="col-md-4 col-form-label text-md-right">Keterangan</label>
                         <div class="col-md-6">
@@ -124,32 +179,30 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('js')
+<script src="{{asset('plugins/inputmask/jquery.inputmask.min.js')}}"></script>
 <script>
-$('form').on('focus', 'input[type=number]', function (e) {
-  $(this).on('wheel.disableScroll', function (e) {
-    e.preventDefault()
-  })
-})
-$('form').on('blur', 'input[type=number]', function (e) {
-  $(this).off('wheel.disableScroll')
-})
-$("#Kategori").change(function(){
-    category = $(this).val();
-    console.log(category);
-    $.get("{{route('ajax.subcategory')}}",{category:category},
-        function(data){
-            if(data.status){
-                sub = data.data;
-                opt = '';
-                for(i=0; i < sub.length; i++){
-                    console.log(sub[i]);
-                    opt += "<option value='"+sub[i].id+"'>"+sub[i].category+"</option>";
-                }
-                $("#SubKategori").html(opt);
-            }
-    })
-})
 
+$(".inputmask").inputmask({
+   alias: 'numeric', 
+   groupSeparator: ',',
+   digits: 2,
+   digitsOptional: false
+});
+$("#realBudget").change(function(){
+    var budget = $("#realBudget").val();
+    console.log(budget);
+    budget = budget.replaceAll(",","");
+    console.log(budget);
+    if(budget>=10000000){
+        $("#kontrak").show();
+        console.log('lebih');
+    }else{
+        $("#kontrak").hide();
+        console.log('kurang');
+    }
+})
 </script>
 @endsection

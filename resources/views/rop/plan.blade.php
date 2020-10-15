@@ -88,7 +88,7 @@
                     <div class="form-group row">
                         <label for="planBudget" class="col-md-4 col-form-label text-md-right">Rencana Anggaran</label>
                         <div class="col-md-6">
-                            <input id="planBudget" type="text" class="form-control inputmask @error('planBudget') is-invalid @enderror" name="planBudget" value="{{ $plan->planBudget ?? old('planBudget') }}" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'digits': 2, 'digitsOptional': false" required >
+                            <input id="planBudget" type="text" class="form-control inputmask @error('planBudget') is-invalid @enderror" name="planBudget" value="{{ $plan->planBudget ?? old('planBudget') }}" required >
                             @error('planBudget')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -143,16 +143,13 @@
 @section('js')
 <script src="{{asset('plugins/inputmask/jquery.inputmask.min.js')}}"></script>
 <script>
-$('form').on('focus', 'input[type=number]', function (e) {
-  $(this).on('wheel.disableScroll', function (e) {
-    e.preventDefault()
-  })
-})
-$('form').on('blur', 'input[type=number]', function (e) {
-  $(this).off('wheel.disableScroll')
-})
 
-$(".inputmask").inputmask();
+$(".inputmask").inputmask({
+   alias: 'numeric', 
+   groupSeparator: ',',
+   digits: 2,
+   digitsOptional: false
+});
 
 $("#Kategori").change(function(){
     category = $(this).val();
