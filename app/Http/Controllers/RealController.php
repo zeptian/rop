@@ -45,7 +45,10 @@ class RealController extends Controller
         //
         $user = Auth::user();
         $planId = $request->input('plan');
-        $plan = Plan::where('id', $planId)->get()->first();
+        $plan = Plan::with('category')->where('id', $planId)->get()->first();
+        if (!$plan) {
+            return redirect()->route('plan')->with('alert-danger', 'pilih rencana!');
+        }
         return view('rop.real', ['plan' => $plan, 'user' => $user]);
     }
 
@@ -61,12 +64,25 @@ class RealController extends Controller
         $this->validate($request, [
             'plan_id'       => 'required|numeric',
             'realTanggal'   => 'required',
-            'realBudget'    => 'required|numeric|min:1000',
+            'realBudget'    => 'required',
             'realSource'    => 'required',
             'realTarget'    => 'required',
             // 'description'    => 'required',
             // 'file'          => 'required',
         ]);
+        $realBudget = str_replace(',', '', $request->planBudget);
+        if ((float)$realBudget >= 10000000) {
+            $this->validate($request, [
+                'penyedia'      => 'required',
+                'noKontrak'     => 'required',
+                'tglKontrak'    => 'required',
+                'startKontrak'  => 'required',
+                'endKontrak'    => 'required',
+                'noBAST'        => 'required',
+                'tglBAST'       => 'required',
+                'metode'        => 'required',
+            ]);
+        }
 
         $file = $request->file('file');
         if ($file) {
@@ -77,14 +93,24 @@ class RealController extends Controller
         $real->user_id = Auth::id();
         $real->plan_id = $request->plan_id;
         $real->realTanggal = $request->realTanggal;
-        $real->realBudget = $request->realBudget;
+        $real->realBudget = (float)$realBudget;
         $real->realSource = $request->realSource;
         $real->realTarget = $request->realTarget;
         $real->description = $request->description;
+
+        if ((float)$realBudget >= 10000000) {
+            $real->penyedia = $request->penyedia;
+            $real->noKontrak = $request->noKontrak;
+            $real->tglKontrak = $request->tglKontrak;
+            $real->startKontrak = $request->startKontrak;
+            $real->endKontrak = $request->endKontrak;
+            $real->noBAST = $request->noBAST;
+            $real->tglBAST = $request->tglBAST;
+            $real->metode = $request->metode;
+        }
+
         if ($file) {
             $real->report = URL::to('/file') . '/' . $file->getClientOriginalName();
-        } else {
-            $real->report = null;
         }
         $real->save();
 
@@ -114,8 +140,9 @@ class RealController extends Controller
         //
         $categories = Category::getParent()->orderBy('id', 'ASC')->get();
         $real = Real::where('id', $id)->first();
+        $plan = Plan::with('category')->where('id', $real->plan_id)->get()->first();
         $user = Auth::user();
-        return view('rop.real', ['real' => $real, 'categories' => $categories, 'user' => $user]);
+        return view('rop.real', ['plan' => $plan, 'real' => $real, 'categories' => $categories, 'user' => $user]);
     }
 
     /**
@@ -131,19 +158,54 @@ class RealController extends Controller
         $this->validate($request, [
             'plan_id'       => 'required|numeric',
             'realTanggal'   => 'required',
-            'realBudget'    => 'required|numeric|min:1000',
+            'realBudget'    => 'required',
             'realSource'    => 'required',
             'realTarget'    => 'required',
+            // 'description'    => 'required',
+            // 'file'          => 'required',
         ]);
+        $realBudget = str_replace(',', '', $request->realBudget);
+        if ((float)$realBudget >= 10000000) {
+            $this->validate($request, [
+                'penyedia'      => 'required',
+                'noKontrak'     => 'required',
+                'tglKontrak'    => 'required',
+                'startKontrak'  => 'required',
+                'endKontrak'    => 'required',
+                'noBAST'        => 'required',
+                'tglBAST'       => 'required',
+                'metode'        => 'required',
+            ]);
+        }
 
+        $file = $request->file('file');
+        if ($file) {
+            $tujuan_upload = 'file';
+            $file->move($tujuan_upload, $file->getClientOriginalName());
+        }
         $real = Real::where('id', $id)->first();
         $real->user_id = Auth::id();
         $real->plan_id = $request->plan_id;
         $real->realTanggal = $request->realTanggal;
-        $real->realBudget = $request->realBudget;
+        $real->realBudget = (float)$realBudget;
         $real->realSource = $request->realSource;
         $real->realTarget = $request->realTarget;
         $real->description = $request->description;
+
+        if ((float)$realBudget >= 10000000) {
+            $real->penyedia = $request->penyedia;
+            $real->noKontrak = $request->noKontrak;
+            $real->tglKontrak = $request->tglKontrak;
+            $real->startKontrak = $request->startKontrak;
+            $real->endKontrak = $request->endKontrak;
+            $real->noBAST = $request->noBAST;
+            $real->tglBAST = $request->tglBAST;
+            $real->metode = $request->metode;
+        }
+
+        if ($file) {
+            $real->report = URL::to('/file') . '/' . $file->getClientOriginalName();
+        }
         $real->save();
 
         return redirect()->route('real')->with('alert-success', 'Data Berhasil Update!');

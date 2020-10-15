@@ -118,11 +118,11 @@ class PlanController extends Controller
     {
         //
         $this->validate($request, [
-            'category'   => 'required|numeric',
+            'category'      => 'required|numeric',
             'subcategory'   => 'required|numeric',
-            'action'    => 'required',
+            'action'        => 'required',
             'planTanggal'   => 'required',
-            'planBudget'    => 'required|numeric|min:1000',
+            'planBudget'    => 'required',
             'planSource'    => 'required',
             'planTarget'    => 'required',
         ]);
@@ -132,7 +132,7 @@ class PlanController extends Controller
         $plan->category_id = $request->category;
         $plan->action = $request->action;
         $plan->planTanggal = $request->planTanggal;
-        $plan->planBudget = $request->planBudget;
+        $plan->planBudget = str_replace(',', '', $request->planBudget);
         $plan->planSource = $request->planSource;
         $plan->planTarget = $request->planTarget;
         $plan->save();

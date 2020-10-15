@@ -58,7 +58,7 @@
                     <div class="form-group row">
                         <label for="realBudget" class="col-md-4 col-form-label text-md-right">Realisasi Anggaran</label>
                         <div class="col-md-6">
-                            <input id="realBudget" type="text" class="form-control inputmask @error('planBudget') is-invalid @enderror"  name="realBudget" value="{{ $real->realBudget ?? old('realBudget') }}" required >
+                            <input id="realBudget" type="text" class="form-control inputmask @error('realBudget') is-invalid @enderror"  name="realBudget" value="{{ $real->realBudget ?? old('realBudget') }}" required >
                             @error('realBudget')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -71,7 +71,7 @@
                         <label for="realSource" class="col-md-4 col-form-label text-md-right">Realisasi Sumber Dana</label>
                         <div class="col-md-6">
                             <select name="realSource" id="realSource" class="form-control @error('realSource') is-invalid @enderror">
-                                <option>{{ $plan->realSource ?? old('realSource') }}</option>
+                                <option>{{ $real->realSource ?? old('realSource') }}</option>
                                 <option>APBN</option>
                                 <option>APBD I</option>
                                 <option>APBD II</option>
@@ -102,6 +102,17 @@
                     <div class="form-group row">
                         <div class="col-md-4">
                             <h3 class="text-md-right">Kontrak</h3>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="penyedia" class="col-md-4 col-form-label text-md-right">Penyedia</label>
+                        <div class="col-md-6">
+                            <input id="penyedia" type="text" class="form-control @error('penyedia') is-invalid @enderror" name="penyedia" value="{{ $real->penyedia ?? old('penyedia') }}" >
+                            @error('penyedia')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
@@ -137,14 +148,48 @@
                             @enderror
                         </div> Sampai
                         <div class="col-md-3">
-                            <input id="startKontrak" type="text" class="form-control @error('startKontrak') is-invalid @enderror" name="startKontrak" value="{{ $real->startKontrak ?? old('startKontrak') }}" >
-                            @error('startKontrak')
+                            <input id="endKontrak" type="text" class="form-control @error('endKontrak') is-invalid @enderror" name="endKontrak" value="{{ $real->endKontrak ?? old('endKontrak') }}" >
+                            @error('endKontrak')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
-                    </div>                    
+                    </div>
+                    <div class="form-group row">
+                        <label for="noBAST" class="col-md-4 col-form-label text-md-right">No BAST</label>
+                        <div class="col-md-6">
+                            <input id="noBAST" type="text" class="form-control @error('noBAST') is-invalid @enderror" name="noBAST" value="{{ $real->noBAST ?? old('noBAST') }}" >
+                            @error('noBAST')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tglBAST" class="col-md-4 col-form-label text-md-right">Tanggal BAST</label>
+                        <div class="col-md-6">
+                            <input id="tglBAST" type="text" class="form-control @error('tglBAST') is-invalid @enderror" name="tglBAST" value="{{ $real->tglBAST ?? old('tglBAST') }}" >
+                            @error('tglBAST')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="metode" class="col-md-4 col-form-label text-md-right">Metode Pengadaan</label>
+                        <div class="col-md-6">
+                            <input id="metode" type="text" class="form-control @error('metode') is-invalid @enderror" name="metode" value="{{ $real->metode ?? old('metode') }}" >
+                            @error('metode')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <hr>
                     </div>
                     <div class="form-group row">
                         <label for="Keterangan" class="col-md-4 col-form-label text-md-right">Keterangan</label>

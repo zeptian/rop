@@ -25,6 +25,10 @@
                                 <th rowspan="2">Kegiatan</th>
                                 <th colspan="4" class="left">Rencana</th>
                                 <th colspan="4" class="left">Realisasi</th>
+                                <th rowspan="2">Penyedia</th>
+                                <th colspan="4" class="left">Kontrak</th>
+                                <th colspan="2" class="left">Berita Acara Serah Terima</th>
+                                <th rowspan="2" class="left">Metode</th>
                                 <th rowspan="2" class="left">Keterangan</th>
                                 <th rowspan="2">Lampiran</th>
                                 <th rowspan="2">Aksi</th>
@@ -39,6 +43,15 @@
                                 <th>Biaya</th>
                                 <th>Sumber dana</th>
                                 <th>Sasaran</th>
+
+                                <th>Tanggal Kontrak</th>
+                                <th>Nomor Kontrak</th>
+                                <th>Jangka Waktu</th>
+                                <th>Sampai</th>
+
+                                <th>Nomor BAST</th>
+                                <th>Tanggal BAST</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -67,9 +80,17 @@
                                             <tr>
                                         @endif
                                                 <td  class="left">{{ $real->realTanggal }}</td>
-                                                <td>{{ $real->realBudget }}</td>
+                                                <td>{{ number_format($real->realBudget,2) }}</td>
                                                 <td>{{ $real->realSource }}</td>
                                                 <td>{{ $real->realTarget }}</td>
+                                                <td>{{ $real->penyedia }}</td>
+                                                <td>{{ $real->noKontrak }}</td>
+                                                <td>{{ $real->tglKontrak }}</td>
+                                                <td>{{ $real->startKontrak }}</td>
+                                                <td>{{ $real->endKontrak }}</td>
+                                                <td>{{ $real->noBAST }}</td>
+                                                <td>{{ $real->tglBAST }}</td>
+                                                <td>{{ $real->metode }}</td>
                                                 <td class="left">{{ $real->description }}</td>
                                                 <td>@if ($real->report)
                                                     <a href="{{ $real->report }}" target="_blank" class="btn btn-sm btn-success" >Download</a>
