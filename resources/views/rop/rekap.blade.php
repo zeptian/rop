@@ -76,7 +76,10 @@
                                 @isset($plan->real)
                                     @foreach ($plan->real as $real)
                                         @php
-                                            $month_name = date("F", mktime(0, 0, 0, $real->realTanggal, 10));    
+                                            $month_name = $real->realTanggal;
+                                            if (is_numeric($real->realTanggal)) {
+                                                $month_name = date("F", mktime(0, 0, 0, $real->realTanggal, 10));    
+                                            }
                                         @endphp
                                         @if ($loop->iteration > 1)
                                             <tr>
