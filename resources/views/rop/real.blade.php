@@ -34,7 +34,7 @@
                             <td>Waktu Pelaksanaan</td><td>:</td><td>{{$plan->planTanggal}}</td>
                         </tr>
                         <tr>
-                            <td>Anggaran</td><td>:</td><td>{{$plan->planBudget}}</td>
+                            <td>Anggaran</td><td>:</td><td>{{number_format($plan->planBudget,2)}}</td>
                             <td>Sumber Dana</td><td>:</td><td>{{$plan->planSource}}</td>
                         </tr>
                         <tr>
@@ -48,18 +48,18 @@
                         <div class="col-md-6">
                             <select name="realTanggal" id="realTanggal" class="form-control @error('realTanggal') is-invalid @enderror">
                                 <option></option>
-                                <option value="1" {{ $real->realTanggal==1 || old('realTanggal')==1 ? 'selected':'' }}>Januari</option>
-                                <option value="2" {{ $real->realTanggal==2 || old('realTanggal')==2 ? 'selected':'' }}>Februari</option>
-                                <option value="3" {{ $real->realTanggal==3 || old('realTanggal')==3 ? 'selected':'' }}>Maret</option>
-                                <option value="4" {{ $real->realTanggal==4 || old('realTanggal')==4 ? 'selected':'' }}>April</option>
-                                <option value="5" {{ $real->realTanggal==5 || old('realTanggal')==5 ? 'selected':'' }}>Mei</option>
-                                <option value="6" {{ $real->realTanggal==6 || old('realTanggal')==6 ? 'selected':'' }}>Juni</option>
-                                <option value="7" {{ $real->realTanggal==7 || old('realTanggal')==7 ? 'selected':'' }}>Juli</option>
-                                <option value="8" {{ $real->realTanggal==8 || old('realTanggal')==8 ? 'selected':'' }}>Agustus</option>
-                                <option value="9" {{ $real->realTanggal==9 || old('realTanggal')==9 ? 'selected':'' }}>September</option>
-                                <option value="10" {{ $real->realTanggal==10 || old('realTanggal')==10 ? 'selected':'' }}>Oktober</option>
-                                <option value="11" {{ $real->realTanggal==11 || old('realTanggal')==11 ? 'selected':'' }}>November</option>
-                                <option value="12" {{ $real->realTanggal==12 || old('realTanggal')==12 ? 'selected':'' }}>Desember</option>
+                                <option value="1" {{ (isset($real->realTanggal) && $real->realTanggal==1) || old('realTanggal')==1 ? 'selected':'' }}>Januari</option>
+                                <option value="2" {{ (isset($real->realTanggal) && $real->realTanggal==2) || old('realTanggal')==2 ? 'selected':'' }}>Februari</option>
+                                <option value="3" {{ (isset($real->realTanggal) && $real->realTanggal==3) || old('realTanggal')==3 ? 'selected':'' }}>Maret</option>
+                                <option value="4" {{ (isset($real->realTanggal) && $real->realTanggal==4) || old('realTanggal')==4 ? 'selected':'' }}>April</option>
+                                <option value="5" {{ (isset($real->realTanggal) && $real->realTanggal==5) || old('realTanggal')==5 ? 'selected':'' }}>Mei</option>
+                                <option value="6" {{ (isset($real->realTanggal) && $real->realTanggal==6) || old('realTanggal')==6 ? 'selected':'' }}>Juni</option>
+                                <option value="7" {{ (isset($real->realTanggal) && $real->realTanggal==7) || old('realTanggal')==7 ? 'selected':'' }}>Juli</option>
+                                <option value="8" {{ (isset($real->realTanggal) && $real->realTanggal==8) || old('realTanggal')==8 ? 'selected':'' }}>Agustus</option>
+                                <option value="9" {{ (isset($real->realTanggal) && $real->realTanggal==9) || old('realTanggal')==9 ? 'selected':'' }}>September</option>
+                                <option value="10" {{ (isset($real->realTanggal) && $real->realTanggal==10) || old('realTanggal')==10 ? 'selected':'' }}>Oktober</option>
+                                <option value="11" {{ (isset($real->realTanggal) && $real->realTanggal==11) || old('realTanggal')==11 ? 'selected':'' }}>November</option>
+                                <option value="12" {{ (isset($real->realTanggal) && $real->realTanggal==12) || old('realTanggal')==12 ? 'selected':'' }}>Desember</option>
                             </select>
                             @error('realTanggal')
                                 <span class="invalid-feedback" role="alert">

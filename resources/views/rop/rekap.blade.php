@@ -69,7 +69,7 @@
                                     <td rowspan="{{$jmlReal}}">{{ $plan->subcategory->category }}</td>
                                     <td rowspan="{{$jmlReal}}">{{ $plan->action }}</td>
                                     <td rowspan="{{$jmlReal}}"  class="left">{{ $plan->planTanggal }}</td>
-                                    <td rowspan="{{$jmlReal}}">{{ $plan->planBudget }}</td>
+                                    <td rowspan="{{$jmlReal}}">{{ number_format($plan->planBudget,2) }}</td>
                                     <td rowspan="{{$jmlReal}}">{{ $plan->planSource }}</td>
                                     <td rowspan="{{$jmlReal}}">{{ $plan->planTarget }}</td>
 
