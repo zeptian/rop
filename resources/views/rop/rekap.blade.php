@@ -74,12 +74,14 @@
                                     <td rowspan="{{$jmlReal}}">{{ $plan->planTarget }}</td>
 
                                 @isset($plan->real)
-                                        
                                     @foreach ($plan->real as $real)
+                                        @php
+                                            $month_name = date("F", mktime(0, 0, 0, $real->realTanggal, 10));    
+                                        @endphp
                                         @if ($loop->iteration > 1)
                                             <tr>
                                         @endif
-                                                <td  class="left">{{ $real->realTanggal }}</td>
+                                                <td  class="left">{{ $month_name }}</td>
                                                 <td>{{ number_format($real->realBudget,2) }}</td>
                                                 <td>{{ $real->realSource }}</td>
                                                 <td>{{ $real->realTarget }}</td>

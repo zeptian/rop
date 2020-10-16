@@ -70,7 +70,7 @@ class RealController extends Controller
             // 'description'    => 'required',
             // 'file'          => 'required',
         ]);
-        $realBudget = str_replace(',', '', $request->planBudget);
+        $realBudget = str_replace(',', '', $request->realBudget);
         if ((float)$realBudget >= 10000000) {
             $this->validate($request, [
                 'penyedia'      => 'required',

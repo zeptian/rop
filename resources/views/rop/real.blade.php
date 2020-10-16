@@ -46,7 +46,21 @@
                     <div class="form-group row">
                         <label for="realTanggal" class="col-md-4 col-form-label text-md-right">Realisasi Waktu Pelaksanaan</label>
                         <div class="col-md-6">
-                            <input id="realTanggal" type="text" class="form-control @error('realTanggal') is-invalid @enderror" name="realTanggal" value="{{ $real->realTanggal ?? old('realTanggal') }}" required>
+                            <select name="realTanggal" id="realTanggal" class="form-control @error('realTanggal') is-invalid @enderror">
+                                <option></option>
+                                <option value="1" {{ $real->realTanggal==1 || old('realTanggal')==1 ? 'selected':'' }}>Januari</option>
+                                <option value="2" {{ $real->realTanggal==2 || old('realTanggal')==2 ? 'selected':'' }}>Februari</option>
+                                <option value="3" {{ $real->realTanggal==3 || old('realTanggal')==3 ? 'selected':'' }}>Maret</option>
+                                <option value="4" {{ $real->realTanggal==4 || old('realTanggal')==4 ? 'selected':'' }}>April</option>
+                                <option value="5" {{ $real->realTanggal==5 || old('realTanggal')==5 ? 'selected':'' }}>Mei</option>
+                                <option value="6" {{ $real->realTanggal==6 || old('realTanggal')==6 ? 'selected':'' }}>Juni</option>
+                                <option value="7" {{ $real->realTanggal==7 || old('realTanggal')==7 ? 'selected':'' }}>Juli</option>
+                                <option value="8" {{ $real->realTanggal==8 || old('realTanggal')==8 ? 'selected':'' }}>Agustus</option>
+                                <option value="9" {{ $real->realTanggal==9 || old('realTanggal')==9 ? 'selected':'' }}>September</option>
+                                <option value="10" {{ $real->realTanggal==10 || old('realTanggal')==10 ? 'selected':'' }}>Oktober</option>
+                                <option value="11" {{ $real->realTanggal==11 || old('realTanggal')==11 ? 'selected':'' }}>November</option>
+                                <option value="12" {{ $real->realTanggal==12 || old('realTanggal')==12 ? 'selected':'' }}>Desember</option>
+                            </select>
                             @error('realTanggal')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -98,7 +112,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div id="kontrak" style="display: none">
+                    <div id="kontrak" >
                     <div class="form-group row">
                         <div class="col-md-4">
                             <h3 class="text-md-right">Kontrak</h3>
