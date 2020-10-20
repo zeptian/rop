@@ -28,6 +28,7 @@ class HomeController extends Controller
             ->join('categories', 'categories.id', '=', 'plans.category_id')
             ->leftjoin('reals', 'reals.plan_id', '=', 'plans.id')
             ->select(DB::raw('category,sum(planBudget) as anggaran, sum(realBudget) as serapan '))
+            ->where([['plans.deleted_at', null], ['reals.deleted_at', null]])
             ->groupBy('category_id')
             ->get();
 
@@ -35,6 +36,7 @@ class HomeController extends Controller
             ->join('users', 'users.id', '=', 'plans.user_id')
             ->leftjoin('reals', 'reals.plan_id', '=', 'plans.id')
             ->select(DB::raw('name,sum(planBudget) as anggaran, sum(realBudget) as serapan '))
+            ->where([['plans.deleted_at', null], ['reals.deleted_at', null]])
             ->groupBy('plans.user_id')
             ->get();
         // dd($plans);

@@ -9,7 +9,7 @@
 
                 <div class="card-header alert-success">
                     <h4>Laporan {{$user->name}}</h4>
-                    <form action="{{route('plan')}}">
+                    <form action="{{route('real')}}">
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label text-md-right">Kategori</label>
                             <div class="col-md-4">
