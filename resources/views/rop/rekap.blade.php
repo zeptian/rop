@@ -7,13 +7,68 @@
             <div class="card">
                 <div class="card-header">Lapor Rencana Operasional</div>
 
-                <div class="card-body">
+                <div class="card-header alert-success">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
                     <h4>Laporan {{$user->name}}</h4>
+                    <form action="{{route('real')}}">
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label text-md-right">Kategori</label>
+                            <div class="col-md-4">
+                                <select name="category" id="Kategori" class="form-control" >
+                                    <option value="all">- Semua -</option>        
+                                    @foreach ($categories as $category)
+                                    <option value="{{$category->id}}"  @if ($q['category']==$category->id) {{'selected'}} @endif>{{$category->category}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
+                            <label class="col-md-2 col-form-label text-md-right">Sub-Kategori</label>
+                            <div class="col-md-4">
+                                <select name="subcategory" id="SubKategori" class="form-control" >
+                                    <option value="all">- Semua -</option>                                   
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Kategori" class="col-md-2 col-form-label text-md-right">Pelaksanaan</label>
+                            <div class="col-md-4">
+                                <select name="pelaksana" id="pelaksana" class="form-control " >
+                                    @if ($user->role=='admin')
+                                        <option value="all">- Semua -</option>        
+                                        @foreach ($users as $user)
+                                        <option value="{{$user->id}}" @if ($q['pelaksana']==$user->id) {{'selected'}} @endif>{{$user->name}}</option>
+                                        @endforeach
+                                    @else
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                    @endif
+                                   
+                                </select>
+                            </div>
+                            <label for="sumber" class="col-md-2 col-form-label text-md-right">Sumber Dana</label>
+                            <div class="col-md-4">
+                                <select name="sumber" id="sumber" class="form-control">
+                                    <option value="all">- Semua -</option>
+                                    <option @if ($q['sumber']=='APBN') {{'selected'}} @endif>APBN</option>
+                                    <option @if ($q['sumber']=='APBD I') {{'selected'}} @endif>APBD I</option>
+                                    <option @if ($q['sumber']=='APBD II') {{'selected'}} @endif>APBD II</option>
+                                    <option @if ($q['sumber']=='DID') {{'selected'}} @endif>DID</option>
+                                    <option @if ($q['sumber']=='DBHCHT') {{'selected'}} @endif>DBHCHT</option>
+                                    <option @if ($q['sumber']=='BTT') {{'selected'}} @endif>BTT</option>
+                                </select>
+                            </div>
+                        </div>                        
+                        <div class="form-group row">
+                            <div class="offset-2 col-md-2">
+                                <button type="submit" class="btn btn-primary btn-sm">Lihat</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-body">
                     <div style="overflow: scroll">
                     <table class="table" id="data">
                         <thead>
@@ -133,5 +188,23 @@
 $(document).ready( function () {
     $('#data').DataTable();
 } );
+
+$("#Kategori").change(function(){
+    category = $(this).val();
+    console.log(category);
+    $.get("{{route('ajax.subcategory')}}",{category:category},
+        function(data){
+            if(data.status){
+                sub = data.data;
+                opt = "<option value='all'>- Semua -</option>";
+                for(i=0; i < sub.length; i++){
+                    console.log(sub[i]);
+                    opt += "<option value='"+sub[i].id+"'>"+sub[i].category+"</option>";
+                }
+                $("#SubKategori").html(opt);
+            }
+    })
+})
+
 </script>
 @endsection
