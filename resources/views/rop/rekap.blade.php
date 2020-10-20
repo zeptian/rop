@@ -8,13 +8,8 @@
                 <div class="card-header">Lapor Rencana Operasional</div>
 
                 <div class="card-header alert-success">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
                     <h4>Laporan {{$user->name}}</h4>
-                    <form action="{{route('real')}}">
+                    <form action="{{route('plan')}}">
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label text-md-right">Kategori</label>
                             <div class="col-md-4">
@@ -39,8 +34,9 @@
                                 <select name="pelaksana" id="pelaksana" class="form-control " >
                                     @if ($user->role=='admin')
                                         <option value="all">- Semua -</option>        
-                                        @foreach ($users as $user)
-                                        <option value="{{$user->id}}" @if ($q['pelaksana']==$user->id) {{'selected'}} @endif>{{$user->name}}</option>
+                                        @foreach ($users as $pelaksana)
+                                        {{$pelaksana}}
+                                        <option value="{{$pelaksana->id}}" @if ($q['pelaksana']==$pelaksana->id) {{'selected'}} @endif>{{$pelaksana->name}}</option>
                                         @endforeach
                                     @else
                                     <option value="{{$user->id}}">{{$user->name}}</option>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Plan;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
@@ -19,18 +20,41 @@ class PlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         $user = Auth::user();
         $role = $user->role;
         $uid = $user->id;
-        if ($role == 'admin') {
-            $plan = Plan::all();
-        } else {
-            $plan = Plan::where('user_id', $uid)->get();
+        // if ($role == 'admin') {
+        //     $plan = Plan::all();
+        // } else {
+        //     $plan = Plan::where('user_id', $uid)->get();
+        // }
+        $category = $request->input('category');
+        $subcategory = $request->input('subcategory');
+        $pelaksana = $request->input('pelaksana');
+        $sumber = $request->input('sumber');
+        $where = null;
+        if ($category && $category != 'all') {
+            $where[] = ['category_id', $category];
         }
-        return view('rop.rekapPlan', ['plans' => $plan, 'user' => $user]);
+        if ($subcategory && $subcategory != 'all') {
+            $where[] = ['subcategory_id', $subcategory];
+        }
+        if ($pelaksana && $pelaksana != 'all') {
+            $uid = $pelaksana;
+            $where[] = ['user_id', $uid];
+        }
+        if ($sumber && $sumber != 'all') {
+            $where[] = ['planSource', $sumber];
+        }
+        $plan = Plan::where($where)->get();
+        $q = compact('category', 'subcategory', 'pelaksana', 'sumber');
+        $categories = Category::getParent()->orderBy('id', 'ASC')->get();
+        $users      = User::select('id', 'name')->get();
+
+        return view('rop.rekapPlan', ['plans' => $plan, 'user' => $user, 'categories' => $categories, 'users' => $users, 'q' => $q]);
     }
 
     /**

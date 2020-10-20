@@ -31,12 +31,7 @@ class RealController extends Controller
         $subcategory = $request->input('subcategory');
         $pelaksana = $request->input('pelaksana');
         $sumber = $request->input('sumber');
-
-        // if ($role == 'admin') {
-        //     $plan = Plan::all();
-        // } else {
-        //     $plan = Plan::where('user_id', $uid)->get();
-        // }
+        $where = null;
         if ($category && $category != 'all') {
             $where[] = ['category_id', $category];
         }
@@ -45,15 +40,16 @@ class RealController extends Controller
         }
         if ($pelaksana && $pelaksana != 'all') {
             $uid = $pelaksana;
+            $where[] = ['user_id', $uid];
         }
         if ($sumber && $sumber != 'all') {
             $where[] = ['planSource', $sumber];
         }
-        $where[] = ['user_id', $uid];
         $plan = Plan::where($where)->get();
         $q = compact('category', 'subcategory', 'pelaksana', 'sumber');
         $categories = Category::getParent()->orderBy('id', 'ASC')->get();
-        $users      = User::select('name')->get();
+        $users      = User::select('id', 'name')->get();
+
         return view('rop.rekap', ['plans' => $plan, 'user' => $user, 'categories' => $categories, 'users' => $users, 'q' => $q]);
     }
 
