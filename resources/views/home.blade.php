@@ -12,8 +12,8 @@
                         <tr><th>Kategory</th><th>Rencana Anggaran</th><th>Realisasi</th><th>Prosentase</th></tr>
                     @foreach ($categories as $item)
                         @php
-                            isset($totalAnggaran) ? $totalAnggaran += $item->anggaran:$totalAnggaran=0;
-                            isset($totalSerapan) ? $totalSerapan += $item->serapan:$totalSerapan=0;   
+                            isset($totalAnggaran) ? $totalAnggaran += $item->anggaran:$totalAnggaran=$item->anggaran;
+                            isset($totalSerapan) ? $totalSerapan += $item->serapan:$totalSerapan=$item->serapan;   
                         @endphp
                         <tr>
                             <td>{{$item->category}}</td>
@@ -42,8 +42,8 @@
                         <tr><th>Pelaksana</th><th>Rencana Anggaran</th><th>Realisasi</th><th>Prosentase</th></tr>
                     @foreach ($actors as $item)
                         @php
-                            isset($totalAnggaran2) ? $totalAnggaran2 += $item->anggaran:$totalAnggaran2=0;
-                            isset($totalSerapan2) ? $totalSerapan2 += $item->serapan:$totalSerapan2=0;   
+                            isset($totalAnggaran2) ? $totalAnggaran2 += $item->anggaran:$totalAnggaran2=$item->anggaran;
+                            isset($totalSerapan2) ? $totalSerapan2 += $item->serapan:$totalSerapan2=$item->serapan;   
                         @endphp
                         <tr>
                             <td>{{$item->name}}</td>
